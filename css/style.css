@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10vh;
+    padding-bottom: 20vh;
+    align-items: center;
+    row-gap: 5vh;
+}
+
+.dungeons {
+    display: flex;
+    flex-direction: column;
+}
+
+.dungeons > section {
+    display: flex;
+    border: 1px solid black;
+}
+
+.dungeons figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+}
+
+.dungeons img {
+    width: 50%;
+}
+
+.game {
+    display: flex;
+    justify-content: center;
+    column-gap: 10vw;
+    width: 80%;
+}
+
+.monster,
+.player {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5vh;
+}
+
+.monster li,
+.monster > figcaption,
+.player li,
+.player > figcaption {
+    display: flex;
+    flex-direction: column;
+}
+
+.monster ul,
+.player ul {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3vh;
+}
+
+.monster figure,
+.player figure {
+    display: flex;
+    column-gap: 1vw;
+}
+
+.monster p,
+.player p {
+    width: 10vw;
+    height: 2vh;
+    background-color: gainsboro;
+    border-radius: 25px;
+    display: flex;
+}
+
+.monster p > span,
+.player p > span {
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    background-color: salmon;
+}
+
+.game > figure:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+[alt="dice"] {
+    width: 30%;
+}
+
+.monster > img,
+.player > img {
+    width: 80%;
+}
