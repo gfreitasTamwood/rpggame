@@ -1,5 +1,5 @@
 //Class Player
-import {Character} from './character.js';
+import Character from './character.js';
 class Player extends Character {
     /**
      * @var {string} playerClass
@@ -38,3 +38,4 @@ class Player extends Character {
         return this.#playerClass;
     }
 }
+export default Player;

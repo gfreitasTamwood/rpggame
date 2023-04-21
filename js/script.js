@@ -17,6 +17,16 @@ https://cdn-icons-png.flaticon.com/512/5374/5374285.png
 https://cdnl.iconscout.com/lottie/premium/preview-watermark/cave-7480275-6081621.mp4
 
 */
+import Player from './player.js';
+// import { Monster } from './monster.js';
+import FileReader from './fileReader.js';
+let playersList = new Map([
+    ["knight", new Player("Longleaf",100,15,15,"knight")],
+    ["rogue", new Player("Spleenwort",100,15,15,"rogue")],
+    ["sorcerer", new Player("Puahekili",100,15,15,"sorcerer")],
+]);
+
+
 /*
 knight - lvl
 atck = 2
@@ -49,17 +59,112 @@ $('table').ready( function() {
         $('[alt="player-1"]').attr("src","https://cdn-icons-png.flaticon.com/512/2822/2822375.png");
         $('#rogue').prop("disabled",true);
         $('#sorcerer').prop("disabled",true);
+
+        $(".player .attack figcaption").text(
+            `Attack: ${playersList.get("knight").getAtackPoints()}`
+        )
+
+        $(".player .deffense figcaption").text(
+            `Deffense: ${playersList.get("knight").getDefensePoints()}`
+        )
+
+        $(".player .health figcaption").text(
+            `HP: ${playersList.get("knight").getHealthPoints()}`
+        )
+
+        $(".player .level figcaption").text(
+            `Level: ${playersList.get("knight").getLevel()}`
+        )
+
+        // $(".player .health span").attr("style","width:95%");
     })
     $('#rogue').on('click', function(){
         $('[alt="player-1"]').attr("src","https://cdn-icons-png.flaticon.com/512/6081/6081840.png");
         $('#knight').prop("disabled",true);
         $('#sorcerer').prop("disabled",true);
+
+        $(".player .attack figcaption").text(
+            `Attack: ${playersList.get("rogue").getAtackPoints()}`
+        )
+
+        $(".player .deffense figcaption").text(
+            `Deffense: ${playersList.get("rogue").getDefensePoints()}`
+        )
+
+        $(".player .health figcaption").text(
+            `HP: ${playersList.get("rogue").getHealthPoints()}`
+        )
+
+        $(".player .level figcaption").text(
+            `Level: ${playersList.get("rogue").getLevel()}`
+        )
     })
     $('#sorcerer').on('click', function(){
         $('[alt="player-1"]').attr("src","https://cdn-icons-png.flaticon.com/512/2822/2822377.png");
         $('#rogue').prop("disabled",true);
         $('#knight').prop("disabled",true);
+
+        $(".player .attack figcaption").text(
+            `Attack: ${playersList.get("sorcerer").getAtackPoints()}`
+        )
+
+        $(".player .deffense figcaption").text(
+            `Deffense: ${playersList.get("sorcerer").getDefensePoints()}`
+        )
+
+        $(".player .health figcaption").text(
+            `HP: ${playersList.get("sorcerer").getHealthPoints()}`
+        )
+
+        $(".player .level figcaption").text(
+            `Level: ${playersList.get("sorcerer").getLevel()}`
+        )
     })
+});
+
+jQuery.extend({
+    getMonsterList: function(url){
+        let result = null;
+
+        $.ajax({
+            docType: "json",
+            type: "GET",
+            async: false,
+            url: url,
+            success: function(data){
+                result = data;
+            },
+            error: function(xhr,status,error) {
+                console.error(`Sorry! File ${error}`);
+            }
+        });
+        return result;
+    }
+});
+
+const dataFile = "../data/monsters.json";
+let monsterList = $.getMonsterList(dataFile);
+
+$('.dungeons').ready(function(){
+    $("input").click(function(){
+        let randomMonster = Math.floor(
+            Math.random()*100        
+        );
+        $(".monster .attack figcaption").text(
+            `Attack: ${monsterList[randomMonster].atack}`
+        );
+        $(".monster .deffense figcaption").text(
+            `Deffense: ${monsterList[randomMonster].defense}`
+        );
+        $(".monster .health figcaption").text(
+            `HP: ${monsterList[randomMonster].health}`
+        );
+        $(".monster .level figcaption").text(
+            `Level: ${monsterList[randomMonster].level}`
+        );
+        $("[alt='monster']").attr("src",monsterList[randomMonster].picture
+        );
+    });
 });
 
 $('.game').ready( function(){
